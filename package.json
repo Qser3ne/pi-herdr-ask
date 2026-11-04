@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Report Pi questionnaire waits as herdr ask status",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qser3ne/pi-herdr-ask.git"
+  },
   "keywords": [
     "pi-package"
   ],
