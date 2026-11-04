@@ -53,7 +53,7 @@
 - [x] `npm test && npm run typecheck`：通过；使用真实 ProgramStatusReporter 验证原生去重不会留下 blocked。
 - [x] 用真实 herdr-core 启动隔离测试终端，加载实际提问插件和本扩展，命令驱动问卷，无模型调用；观察 blocked/question，发送答案/取消并核实恢复；退出且清理本次创建的终端。若无法检查 GUI 文案，明确保留人工验收。
 - [x] 写 README 安装/卸载/支持范围/本地子仓库说明；`npm pack --dry-run` 核查包内容。
-- [ ] 提交 `feat: integrate Pi questionnaire lifecycle and document installation`。
+- [x] 提交 `feat: integrate Pi questionnaire lifecycle and verify herdr status`（4c06283）。
 
 ## Execution decisions
 
