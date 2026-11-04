@@ -35,24 +35,24 @@
 
 **Interfaces:** `attachStatusBridge(terminal: Pick<Terminal, 'setProgramStatus'>, initial: ProgramStatus): { receive(data: unknown): void; close(toolCallId: string): void; dispose(): void }`。
 
-- [ ] 编写测试：working→blocked/question→working；两问卷需全部关闭；重复/未知结束和错误载荷不更改状态；原生 done/error/idle 更新在等待结束后恢复；原生 blocked/auth 优先；clear 不被阻挡；dispose 幂等且保留后装包装器。
-- [ ] `npm test`：断言失败，显示缺失桥接行为。
-- [ ] 实现集合、载荷校验、原生报告快照、幂等清理；只在有效等待状态改变时输出。借用公开 Terminal 方法，不访问私有 programStatus。
-- [ ] `npm test && npm run typecheck`：全部通过。
-- [ ] 提交 `feat: bridge questionnaire waits to native terminal status`。
+- [x] 编写测试：working→blocked/question→working；两问卷需全部关闭；重复/未知结束和错误载荷不更改状态；原生 done/error/idle 更新在等待结束后恢复；原生 blocked/auth 优先；clear 不被阻挡；dispose 幂等且保留后装包装器。
+- [x] `npm test`：断言失败，显示缺失桥接行为。
+- [x] 实现集合、载荷校验、原生报告快照、幂等清理；只在有效等待状态改变时输出。借用公开 Terminal 方法，不访问私有 programStatus。
+- [x] `npm test && npm run typecheck`：全部通过。
+- [x] 提交 `feat: bridge questionnaire waits to native terminal status`。
 
 ### Task 2: Extension lifecycle and real-host verification
 
-**Files:** `src/index.ts`, `test/extension.test.ts`, `test/integration.test.ts`, `test/fixtures/ask-driver.ts`, `README.md`。
+**Files:** `src/index.ts`, `test/extension.test.ts`, `test/integration.test.ts`, `test/fixtures/ask-driver.js`, `README.md`。
 
 **Interfaces:** 默认导出 `(pi: ExtensionAPI) => void`。Task 1 的 bridge 负责状态；session_start 负责环境门控与安装，session_shutdown 负责退订/卸载，tool_execution_end 为缺失 finally 事件提供按 ID 兜底。
 
-- [ ] 编写扩展边界测试：无启动副作用；TUI+HC+TTY 才装桥；关闭后事件无效；reload 无重复监听；普通 UI 不触发等待；工具结束只清理对应问卷。
-- [ ] `npm test`：新用例因尚未注册桥接而失败。
-- [ ] 实现入口及 package pi.extensions。临时 widget 工厂只获取 terminal，随后移除，不保留可见 UI。
-- [ ] `npm test && npm run typecheck`：通过；使用真实 ProgramStatusReporter 验证原生去重不会留下 blocked。
-- [ ] 用真实 herdr-core 启动隔离测试终端，加载实际提问插件和本扩展，命令驱动问卷，无模型调用；观察 blocked/question，发送答案/取消并核实恢复；退出且清理本次创建的终端。若无法检查 GUI 文案，明确保留人工验收。
-- [ ] 写 README 安装/卸载/支持范围/本地子仓库说明；`npm pack --dry-run` 核查包内容。
+- [x] 编写扩展边界测试：无启动副作用；TUI+HC+TTY 才装桥；关闭后事件无效；reload 无重复监听；普通 UI 不触发等待；工具结束只清理对应问卷。
+- [x] `npm test`：新用例因尚未注册桥接而失败。
+- [x] 实现入口及 package pi.extensions。临时 widget 工厂只获取 terminal，随后移除，不保留可见 UI。
+- [x] `npm test && npm run typecheck`：通过；使用真实 ProgramStatusReporter 验证原生去重不会留下 blocked。
+- [x] 用真实 herdr-core 启动隔离测试终端，加载实际提问插件和本扩展，命令驱动问卷，无模型调用；观察 blocked/question，发送答案/取消并核实恢复；退出且清理本次创建的终端。若无法检查 GUI 文案，明确保留人工验收。
+- [x] 写 README 安装/卸载/支持范围/本地子仓库说明；`npm pack --dry-run` 核查包内容。
 - [ ] 提交 `feat: integrate Pi questionnaire lifecycle and document installation`。
 
 ## Execution decisions
